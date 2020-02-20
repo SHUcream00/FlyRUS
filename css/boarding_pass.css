@@ -1,0 +1,156 @@
+@import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
+
+.ticket {
+  width: 620px;
+  margin: 0px;
+  background-color: #F8F8F8;
+  border-radius: 10px;
+  color: #000;
+  font-family: Helvetica Neue;
+  font-weight: 300;
+  letter-spacing: 1px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.ticket header {
+  position: relative;
+  height: 35px;
+  background-color: #148fd2;
+  padding: 10px;
+  border-radius: 10px 10px 0px 0px;
+}
+.ticket header .company-name {
+  line-height: 35px;
+  text-align: left;
+  color: #fff;
+  font-family: Arial Black;
+}
+.ticket header .customer-name {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: center;
+  font-size: 18px;
+  color: #fff;
+  font-family: Arial;
+}
+.ticket header .logo {
+  position: absolute;
+  right: 15px;
+  top: 70px;
+}
+.ticket header .terminal-name{
+  position: absolute;
+  right: 190px;
+  top: 70px;
+  color: #29A8EB;
+  text-transform: uppercase;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: center;
+  font-size: 26px;
+  color: #000;
+}
+.ticket header .departure-name {
+  position: absolute;
+  right: 300px;
+  top: 6px;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: center;
+  font-size: 12px;
+  color: #fff;
+  font-family: Arial;
+}
+.ticket header .departure-date {
+  position: absolute;
+  right: 300px;
+  top: 20px;
+  font-weight: 400;
+  line-height: 35px;
+  text-align: center;
+  font-size: 20px;
+  color: #000;
+  font-family: Arial Black;
+}
+.ticket header:after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+  border-radius: 50%;
+  box-shadow: inset 12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+.ticket header:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -8px;
+  left: -8px;
+  border-radius: 50%;
+  box-shadow: inset -12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+}
+.ticket .airports {
+  position: relative;
+  text-align: left;
+}
+
+.ticket .airports .airport {
+  text-indent: 10px;
+  margin: 15px;
+  text-align: center;
+  display: inline-block;
+}
+.ticket .airports .airport .airport-name {
+  color: #148fd2;
+  font-size: 14px;
+  font-weight: 400;
+}
+.ticket .airports .airport .airport-code {
+  font-size: 32px;
+  font-weight: 400;
+  margin: 5px 0;
+}
+.ticket .airports .airport .dep-arr-label {
+  color: #a6a6a6;
+  font-size: 13px;
+  font-weight: 500;
+}
+.ticket .airports .airport .time {
+  font-size: 11px;
+  color: #9299A0;
+}
+.ticket .airports .airport:first-child {
+  margin-right: 15px;
+}
+.ticket .airports .airport:first-child:after {
+  font-family: FontAwesome;
+  color: #353E48;
+  content: "\f072";
+  position: absolute;
+  font-size: 30px;
+  top: 35%;
+  left: 19%;
+}
+.ticket .airports .place-block {
+  padding: 2px;
+  text-align: center;
+  display: inline-block;
+}
+.ticket .airports .place-block .place-label {
+  color: #148fd2;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.ticket .barcode .qr {
+  padding-bottom: 10px;
+  text-align: center;
+}

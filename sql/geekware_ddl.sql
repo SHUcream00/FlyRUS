@@ -1,0 +1,75 @@
+DROP   DATABASE IF EXISTS     GeekwareDB;
+CREATE DATABASE IF NOT EXISTS GeekwareDB;
+
+USE GeekwareDB;
+
+CREATE TABLE UserAcct
+( User_ID       INTEGER UNSIGNED  NOT NULL    AUTO_INCREMENT  PRIMARY KEY,
+  Username      VARCHAR(50)       NOT NULL,
+  PASSWORD      VARCHAR(100)      NOT NULL,
+  Email         VARCHAR(150)      NOT NULL,
+  First_name    VARCHAR(100)      NOT NULL,
+  Last_name     VARCHAR(150)      NOT NULL,
+  Flights       VARCHAR(150)      NOT NULL
+);
+CREATE TABLE FlightModel
+( Model_ID      INTEGER UNSIGNED NOT NULL	PRIMARY KEY,
+  Seat_Struct   VARCHAR(1000) NOT NULL
+);
+
+CREATE TABLE AllFlights
+( Flight_ID           INTEGER UNSIGNED NOT NULL   AUTO_INCREMENT    PRIMARY KEY,
+  Arrival_date        DATE,
+  Departure_date      DATE,
+  Arrival_time        TIME,
+  Departure_time      TIME,
+  Flight_destination  VARCHAR(100)  NOT NULL,
+  Flight_source       VARCHAR(100)  NOT NULL,
+  Destination_code    CHAR(3)   NOT NULL,
+  Source_code         CHAR(3)   NOT NULL,
+  Flight_gate         VARCHAR(50)   NOT NULL,
+  Flight_status       ENUM('Delayed', 'Cancelled', 'On Time') NOT NULL,
+  Model_ID            INTEGER UNSIGNED NOT NULL,
+  Seat_Struct         VARCHAR(1000) NOT NULL
+
+);
+
+CREATE TABLE Payment
+( Confirmation_ID         INTEGER UNSIGNED NOT NULL   AUTO_INCREMENT    PRIMARY KEY,
+  User_ID                 INTEGER UNSIGNED NOT NULL,
+  Credit_card_num         BIGINT UNSIGNED NOT NULL,
+  Credit_card_exp_date    DATE,
+  Credit_card_cvv         INTEGER UNSIGNED NOT NULL,
+
+  FOREIGN KEY (User_ID) REFERENCES UserAcct(User_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE ReserveFlight
+( Flight_ID     INTEGER UNSIGNED NOT NULL,
+  Flight_seat   VARCHAR(50)   NOT NULL,
+  Num_of_bags   INTEGER UNSIGNED NOT NULL,
+  User_ID       INTEGER UNSIGNED NOT NULL,
+  Payment_ID    INTEGER UNSIGNED NOT NULL,
+  
+  UNIQUE(Flight_ID),
+
+  FOREIGN KEY (Flight_ID) REFERENCES AllFlights(Flight_ID) ON DELETE CASCADE,
+  FOREIGN KEY (Payment_ID) REFERENCES Payment(Confirmation_ID) ON DELETE CASCADE,
+  FOREIGN KEY (User_ID) REFERENCES UserAcct(User_ID) ON DELETE CASCADE
+);
+
+CREATE TABLE CheckIn
+( Confirmation_Num INTEGER UNSIGNED NOT NULL UNIQUE,
+  Flight_ID     INTEGER UNSIGNED NOT NULL,
+  Check_In_Status  ENUM('Not Checked in', 'Checked in') DEFAULT 'Not Checked in',
+  User_ID INT UNSIGNED NOT NULL,
+  Luggages INT NOT NULL,
+   
+  FOREIGN KEY (User_ID) REFERENCES UserAcct(User_ID), 
+  FOREIGN KEY (Flight_ID) REFERENCES AllFlights(Flight_ID) ON DELETE CASCADE,
+  FOREIGN KEY (Confirmation_Num) REFERENCES Payment(Confirmation_ID) ON DELETE CASCADE
+);
+
+INSERT INTO FlightModel (Model_ID, Seat_Struct) VALUES (737, "ff_ff.ff_ff.ff_ff.ff_ff.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111.111_111");
+INSERT INTO FlightModel (Model_ID, Seat_Struct) VALUES (11, "ff_ff_ff.ff_ff_ff.ff_ff_ff.ff_ff_ff.ee_ff_ee.ff_ff_ff.ff_ff_ff.ff_ff_ff.ff_ff_ff.11_11e11_ee.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.ee_11111_ee.11_11111_ee.11_11111_ee.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11111_11.11_11e11_11.11_11e11_11.ee_11e11_11");
+INSERT INTO FlightModel (Model_ID, Seat_Struct) VALUES (330, "ff_ff_ff.ff_ff_ff.ff_ff_ff.ff_ff_ff.ff_ff_ff.11_111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_1111_11.11_111_11.11_111_11.11_111_11.11_111_11");
