@@ -1,2 +1,2 @@
-# CSUF-CPSC-362
-Repository for CPSC 362 group project for summer 2018
+# Fly R US
+PHP/CSS project for one of own group classes in college
